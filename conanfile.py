@@ -21,7 +21,7 @@ class FclConan(ConanFile):
         "build_tests": False
     }
     requires = "eigen/3.3.7@conan/stable", "libccd/2.1@radalytica/stable"
-    build_requires = "cmake_installer/[>=3.14.4]@conan/stable"
+    build_requires = "cmake_installer/[>=3.14.4]@conan/stable", "pkg-config_installer/0.29.2@bincrafters/stable"
     generators = "cmake"
 
     def source(self):
