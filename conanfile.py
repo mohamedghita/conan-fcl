@@ -25,8 +25,10 @@ class FclConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        git = tools.Git(folder="fcl")
-        git.clone("https://github.com/flexible-collision-library/fcl.git", branch="fcl-0.5")
+        extension = ".zip" if tools.os_info.is_windows else ".tar.gz"
+        url = "https://github.com/flexible-collision-library/fcl/archive/%s%s" % (self.version, extension)
+        tools.get(url)
+        shutil.move("fcl-%s" % self.version, "fcl")
         tools.replace_in_file("fcl/CMakeLists.txt", "project(fcl CXX C)",
                               'project(fcl CXX C)\n' +
                               'include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)\n' +
@@ -70,6 +72,7 @@ class FclConan(ConanFile):
         cmake.definitions["CONAN_CXX_FLAGS"] += ' ' + cxxFlags
         cmake.definitions["CONAN_SHARED_LINKER_FLAGS"] += ' ' + linkFlags
         cmake_defs = self._fcl_cmake_definitions(package_folder, build_folder)
+        cmake_defs["CMAKE_POSITION_INDEPENDENT_CODE"] = "ON"
         cmake.configure(defs=cmake_defs, source_folder=os.path.join(self.build_folder, "fcl"))
         return cmake
 
