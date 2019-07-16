@@ -2,7 +2,7 @@
 conan.io package for flexible-collision-library/fcl https://github.com/flexible-collision-library/fcl
 
 # Bintray repository
-Find conan package here: https://bintray.com/radalytica/conan-radalytica/fcl:radalytica
+Find conan package here: https://bintray.com/rd/conan-radalytica/fcl:radalytica
 
 # Installation 
 1. [install conan.io](https://docs.conan.io/en/latest/installation.html) 
