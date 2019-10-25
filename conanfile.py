@@ -35,6 +35,7 @@ class FclConan(ConanFile):
                               'conan_basic_setup()\n')
         if self.settings.compiler.cppstd == "17":
             tools.replace_in_file("fcl/include/fcl/math/math_details.h", "register", " ")
+            tools.replace_in_file("fcl/src/BV/OBB.cpp", "register", " ")
 
     def _fcl_cmake_definitions(self, package_folder, build_folder):
         # CCD_LIBRARY_DIRS
